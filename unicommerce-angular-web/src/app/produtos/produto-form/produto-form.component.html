@@ -1,0 +1,83 @@
+<body class="container">
+  <h1 class="text-center">Unicommerce</h1>
+  <h2 class="text-center">Cadastro de Produto</h2>
+
+  <form>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input
+            id="nome"
+            type="text"
+            class="form-control"
+            required
+            autofocus
+            [(ngModel)]="produto.nome"
+            name="nome"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="preco">Preco</label>
+          <input
+            id="preco"
+            type="number"
+            class="form-control"
+            required
+            [(ngModel)]="produto.preco"
+            name="preco"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="descricao">Descricao</label>
+          <input
+            id="descricao"
+            type="text"
+            class="form-control"
+            required
+            [(ngModel)]="produto.descricao"
+            name="descricao"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="quantidade">Quantidade</label>
+          <input
+            id="quantidade"
+            type="number"
+            class="form-control"
+            required
+            [(ngModel)]="produto.quantidade"
+            name="quantidade"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="Idcategoria">Idcategoria</label>
+          <input
+            id="Idcategoria"
+            type="number"
+            class="form-control"
+            required
+            [(ngModel)]="produto.Idcategoria"
+            name="Idcategoria"
+          />
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit" (click)="cadastraProduto()">
+      Cadastrar Produto
+    </button>
+  </form>
+</body>

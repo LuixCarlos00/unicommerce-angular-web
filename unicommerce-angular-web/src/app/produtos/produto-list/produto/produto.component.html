@@ -1,0 +1,19 @@
+<p class="text-center text-muted">Carregando</p>
+
+<ol class="list-unstyled">
+  <li *ngFor="let cols of rows" class="row no-gutters p-0">
+    <div *ngFor="let produtos of cols" class="col-4" apDarkenOnHover>
+      <ap-card>
+        <app-produto
+          [id]="produtos.id"
+          [nome]="produtos.nome"
+          [preco]="produtos.preco"
+          [descricao]="produtos.descricao"
+          [quantidade]="produtos.quantidade"
+          [Idcategoria]="produtos.Idcategoria"
+        >
+        </app-produto>
+      </ap-card>
+    </div>
+  </li>
+</ol>

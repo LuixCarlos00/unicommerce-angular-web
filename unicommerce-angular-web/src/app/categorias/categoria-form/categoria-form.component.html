@@ -1,0 +1,34 @@
+<div class="container">
+  <br>
+  <br>
+  <h1 class="text-center">Unicommerce</h1>
+  <br>
+  <br>
+  <h5 class="text-center">Cadastrar Categoria</h5>
+  <br>
+  <br>
+  <form  >
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" class="form-control" required autofocus [(ngModel)]="categoria.nome" name="nome" />
+        </div>
+      </div>
+
+      <div class="col-md-6">  
+        <div class="form-group">
+          <label for="status">Status</label>
+          <div class="form-check">
+            <input id="status" type="checkbox" class="form-check-input" required [(ngModel)]="categoria.ativo" name="ativo" />
+            <label class="form-check-label" for="status">Ativo</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button class="btn btn-primary" type="button" (click)="cadastraCategoria()">Adicionar</button>
+    </div>
+  </form>
+</div>
