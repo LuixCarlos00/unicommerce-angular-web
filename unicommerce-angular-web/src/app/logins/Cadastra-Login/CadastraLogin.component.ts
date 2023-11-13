@@ -4,15 +4,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { lowerCaseValidator } from 'src/app/shared/validator/lower-case.validator';
 import { CadastraLoginService } from './CadastraLogin.service';
+import { ClienteService } from 'src/app/clientes/cliente/cliente.service';
 
 @Component({
   templateUrl: './CadastraLogin.component.html',
 })
 export class CadastraLoginComponent implements OnInit {
+CadastroCliente() {
+throw new Error('Method not implemented.');
+}
   signupForm!: FormGroup;
+  clienteForm!: FormGroup<any>;
 
   constructor(
-    private router : Router,
+    private  clienteSevice : ClienteService,//////tentativa de cadastra cliente co ususario 
     private formBuilder: FormBuilder,
     private signupService: CadastraLoginService
   ) {}
@@ -50,7 +55,7 @@ export class CadastraLoginComponent implements OnInit {
         login: this.signupForm.get('login')?.value,
         senha: this.signupForm.get('senha')?.value,
       };
-  
+      
       this.signupService.CadastroUsuario(user).subscribe(
         (response) => {
           console.log(response);
@@ -77,6 +82,8 @@ export class CadastraLoginComponent implements OnInit {
     this.signupForm.reset();
   }
   
-  
+  Menu(){
+    this.router.navigate([''])
+  }
 
 }
