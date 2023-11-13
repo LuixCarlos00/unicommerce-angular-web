@@ -1,7 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoriaService } from '../categoria/categorai.service';
+  
 import { Categoria } from '../categoria/categoria';
+import { Router } from '@angular/router';
+import { CategoriaService } from '../categoria/categorai.service';
 
 @Component({
   selector: 'app-categoria-form',
@@ -9,31 +11,55 @@ import { Categoria } from '../categoria/categoria';
   styleUrls: ['./categoria-form.component.css'],
 })
 export class CategoriaFormComponent implements OnInit {
-  CategoriaForm!: FormGroup;
-  @ViewChild('CategoriaNomeInput')
-  CategoriaNomeInput!: ElementRef<HTMLInputElement>;
-  categoria!: Categoria;
+  categoriaForm!: FormGroup;
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
-    private CategoriaService: CategoriaService
+    private categoriaService: CategoriaService
   ) {}
 
   ngOnInit(): void {
-    this.CategoriaForm = this.formBuilder.group({});
+    this.categoriaForm = this.formBuilder.group({
+      nome: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(30),
+        ],
+      ],
+      status: [ ], // Valor padrão para o checkbox
+    });
   }
 
   cadastraCategoria() {
-    console.log('Método cadastraCategoria chamado.');
-    this.categoria = this.CategoriaForm.value;
-
-    this.CategoriaService.CadastroCategoria(this.categoria).subscribe(
-      (erro) => {
-        console.log(erro);
-        this.CategoriaForm.reset();
-        this.CategoriaNomeInput.nativeElement.focus();
-        alert('Dados invalidos para o categoria');
-      }
-    );
+    if (this.categoriaForm.valid) {
+      const categoria: Categoria = {
+        nome: this.categoriaForm.get('nome')?.value,
+        status: this.categoriaForm.get('status')?.value === null 
+          ? false 
+          : this.categoriaForm.get('status')?.value,
+      };
+  
+      this.categoriaService.CadastroCategoria(categoria).subscribe(
+        (response) => {
+          console.log(response);
+          alert('Cadastro feito com sucesso');
+          this.categoriaForm.reset();
+        },
+        (error) => {
+          console.error(error);
+          alert('Dados inválidos para a categoria');
+        }
+      );
+    } else {
+      alert('Por favor, preencha todos os campos corretamente.');
+    }
+  }
+  
+  
+  Menu() {
+    this.router.navigate(['Dashboard']);
   }
 }

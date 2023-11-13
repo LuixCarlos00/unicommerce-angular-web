@@ -2,7 +2,8 @@ import { NgModule } from "@angular/core";
 import { CategoriaFormComponent } from "./categoria-form.component";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VmessageModule } from "src/app/shared/components/vmessage/vmessage.module";
  
 
 
@@ -14,6 +15,9 @@ imports:[
   CommonModule,
   HttpClientModule,
   FormsModule,
+  ReactiveFormsModule,
+  VmessageModule
+  
 ],
 
 exports:[CategoriaFormComponent]

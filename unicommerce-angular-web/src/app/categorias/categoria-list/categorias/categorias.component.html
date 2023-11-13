@@ -1,7 +1,9 @@
+<br>
 <p class="text-center text-muted">
     Carregando
 </p>
-
+<br>
+<div class="text-center text-muted">
 <ol class="list-unstyled">
     <li *ngFor="let cols of rows " class="row no-gutters p-0">
         <div *ngFor="let categoria of cols" class="col-4" apDarkenOnHover>
@@ -15,3 +17,10 @@
         </div>
     </li>
 </ol>
+
+
+    <div>
+    <button class="btn bg-white" type="button" (click)="Menu()">MENU</button>
+  </div>
+
+</div>

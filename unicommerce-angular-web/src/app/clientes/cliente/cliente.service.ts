@@ -1,32 +1,61 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Cliente } from "./cliente";
-import { Observable } from "rxjs";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Cliente } from './cliente';
+import { Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';   
+ 
+import { tokenService } from 'src/app/core/token/token.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
+ 
 
-const API ='http://localhost:8080/api';
+const API = 'http://localhost:8080/api';
 
-@Injectable({providedIn:'root'})
-export class ClienteService{
+@Injectable({ providedIn: 'root' })
+export class ClienteService {
+  adicionarCliente(cliente: Cliente) {
+    throw new Error('Method not implemented.');
+  }
+  jwtHelper: JwtHelperService;
+  authService!: AuthService;  
+
+  constructor(private http: HttpClient, private tokenService:tokenService ) {
+    this.jwtHelper = new JwtHelperService();
+    
+  }
+
+  get(id: string): Observable<Cliente> {
+    return this.http.get<Cliente>(`${API}/cliente/${id}`);
+  }
+
+  getLit(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(`${API}/cliente/lista`);
+  }
 
 
-constructor(private Http:HttpClient){}
+  CadastroCliente(dadosCliente: Cliente): Observable<any> {
+    return this.http.post<any>(`${API}/cliente`, dadosCliente  );
+  }
+
+
+ 
+
+  
+
+//  getToken(): any {
+ //   return this.tokenService.hasToken();
+ //}
 
 
 
-get(id:string){
-    return this.Http.get<Cliente>(API + '/cliente/' + id);
-}
+  
+  //getIdDoUsuarioAutenticado(): number | null {
+  //  const token = this.getToken();
+  //  if (token && !this.jwtHelper.isTokenExpired(token)) {
+  //   const decodedToken = this.jwtHelper.decodeToken(token);
+  //    return decodedToken?.id ?? null;
+  //  }
+ //  return null;
+ // }
 
-getLit(){
-    return this.Http.get<Cliente[]>(API + '/cliente/lista');
-}
-
-
-
-CadastroCliente(dadosCliente:Cliente):Observable<any>{
-    return this.Http.post
-    <any>(API+'/cliente',dadosCliente);
-
-}
 
 }

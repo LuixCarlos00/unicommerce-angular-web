@@ -3,6 +3,6 @@ export interface Produto {
   nome: string;
   preco: number;
   descricao: string;
-  quantidade: number;
-  Idcategoria: number;
+  quantidade_estoque: number;
+  categoriaId: number;
 }

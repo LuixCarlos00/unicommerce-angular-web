@@ -1,23 +1,35 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Produto } from '../../produto/produto';
+import { Component, Input, OnInit, SimpleChanges } from "@angular/core";
+import { Router } from "@angular/router";
+import { Produto } from "../../produto/produto";
+ 
+  @Component({
+    selector: 'ap-produto',
+    templateUrl: './produto.component.html',
+    styleUrls: ['./produto.component.css']
+  })
+  export class ProdutoComponet implements OnInit {
 
-@Component({
-  selector: 'ap-produto',
-  templateUrl: './produto.component.html',
-  styleUrls: ['./produto.component.css'],
-})
-export class ProdutoComponet implements OnInit {
-  @Input() produtos: Produto[] = [];
+    @Input() produtoComponet: Produto[] = [];
   rows: any[] = [];
-  constructor() {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
+    
+  constructor(private route: Router) {}
+  
+  
+  Menu(){
+    this.route.navigate(['Dashboard'])
+      }
+  
+      ngOnInit(): void {
+        
+      }
+   
+  
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['produtos']) this.rows = this.groupColumns(this.produtos);
+    if (changes['produtoComponet']) {
+      this.rows = this.groupColumns(this.produtoComponet);
+    }
   }
-
+  
   groupColumns(produtos: Produto[]) {
     const newRows = [];
 
@@ -27,3 +39,7 @@ export class ProdutoComponet implements OnInit {
     return newRows;
   }
 }
+  
+
+
+  

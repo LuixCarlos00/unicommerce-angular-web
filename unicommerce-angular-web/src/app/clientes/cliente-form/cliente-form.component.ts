@@ -1,62 +1,75 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Cliente } from '../cliente/cliente';
 import { ClienteService } from '../cliente/cliente.service';
+import { Router } from '@angular/router';
+import { Cliente } from '../cliente/cliente';
+import { error } from 'console';
 
 @Component({
   selector: 'app-cliente-form',
   templateUrl: './cliente-form.component.html',
-  styleUrls: ['./cliente-form.component.css']
+  styleUrls: ['./cliente-form.component.css'],
 })
 export class ClienteFormComponent implements OnInit {
+[x: string]: any;
   clienteForm!: FormGroup;
   @ViewChild('clienteNomeInput')
   clienteNomeInput!: ElementRef<HTMLInputElement>;
-  cliente!: Cliente;  
+  cliente!: Cliente;
+  platformDetectorService: any;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private clienteService: ClienteService,
-  ) {}
-
+  constructor(private router:Router,private formBuilder: FormBuilder, private clienteService: ClienteService) {}
   ngOnInit(): void {
-   
     this.clienteForm = this.formBuilder.group({
- 
+        nome: ['', Validators.required],
+        cpf: ['', Validators.required],
+        telefone: ['', Validators.required],
+        rua: ['', Validators.required],
+        numero: ['', Validators.required],
+        complemento: [''],
+        bairro: ['', Validators.required],
+        cidade: ['', Validators.required],
+        estado: ['', Validators.required],
+        usuarioId: ['', Validators.required]
     });
-  }
+}
 
-
-
-  CadastraCliente() {
-    console.log('Método de cadastro de cliente chamado.');
-  
-    if (this.clienteForm.valid) {
-      const clienteData = this.clienteForm.value;
-      this.cliente = {
-        nome: clienteData.nome,
-        cpf: clienteData.cpf,
-        telefone: clienteData.telefone,
-        endereco: {
-          rua: clienteData.rua,
-          numero: clienteData.numero,
-          complemento: clienteData.complemento,
-          bairro: clienteData.bairro,
-          cidade: clienteData.cidade,
-          estado: clienteData.estado,
-        }
-      };
-  
-      this.clienteService.CadastroCliente(this.cliente).subscribe(
-        (response) => {
-          console.log(response); // Lidar com a resposta de sucesso
-          this.clienteForm.reset();
-          this.clienteNomeInput.nativeElement.focus();
-          alert('Cliente cadastrado com sucesso');
-        },
-      );
+CadastroCliente() {
+     let cliente: Cliente = {
+     
+      nome:  this.clienteForm.get('nome')?.value,
+      cpf: this.clienteForm.get('cpf')?.value,
+      telefone: this.clienteForm.get('telefone')?.value,
+      endereco: {
+        rua: this.clienteForm.get('rua')?.value,
+        numero: this.clienteForm.get('numero')?.value,
+        complemento: this.clienteForm.get('complemento')?.value,
+        bairro: this.clienteForm.get('bairro')?.value,
+        cidade: this.clienteForm.get('cidade')?.value,
+        estado: this.clienteForm.get('estado')?.value,
+      },
+      usuario: {
+        id: this.clienteForm.get('usuarioId')?.value,
+      }
     }
-  }
-  
+
+  this.clienteService
+        .CadastroCliente(cliente)
+        .subscribe(
+          err => {
+          console.log(err);
+          this.clienteForm.reset();
+          this.platformDetectorService.isPlatformBrowser() &&
+          this.clienteNomeInput.nativeElement.focus();
+          alert('Dados invalidos para o cliente')
+      }
+      ); 
+
+}
+
+
+Menu(){
+  this.router.navigate(['Dashboard'])
+}
 
 }

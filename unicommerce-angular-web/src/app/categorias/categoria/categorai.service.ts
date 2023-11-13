@@ -25,8 +25,7 @@ getList(){
 
 
 CadastroCategoria(dadosCategoria:Categoria):Observable<any>{
-    return this.Http.post
-    <any>(API+'/categoria',dadosCategoria);
+    return this.Http.post<any>(API+'/categoria',dadosCategoria);
 
 }
 

@@ -4,7 +4,7 @@ import { CategoriaFormModule } from "./categoria-form/categoria-form.module";
 import { CategoriaListModule } from "./categoria-list/categoria-list.module";
 import { DarkenOnHoverModule } from "../shared/directives/darken-on-hover/darken-on-hover.module";
 import { CategoriaModule } from "./categoria/categoria.module";
-import { CategoriaComponent } from "./categoria/categoria.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 
 
@@ -15,7 +15,8 @@ import { CategoriaComponent } from "./categoria/categoria.component";
     imports:[CategoriaModule,
              CategoriaFormModule,
              CategoriaListModule,
-             DarkenOnHoverModule
+             DarkenOnHoverModule,
+             
          ],
 
  

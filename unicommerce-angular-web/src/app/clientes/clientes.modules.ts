@@ -14,7 +14,7 @@ imports:[
     ClienteModule,
     ClieteFormMoules,
     ClienteListModules,
-    DarkenOnHoverModule
+    DarkenOnHoverModule,
     
     ]
 

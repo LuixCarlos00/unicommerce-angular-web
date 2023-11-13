@@ -1,7 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Produto } from '../produto/produto';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ProdutoService } from '../produto/produto.service';
+import { Produto } from '../produto/produto';
+import { plataformDetectorService } from 'src/app/core/plataform-decector/plataform-detector.service';
+ 
 
 @Component({
   selector: 'app-produto-form',
@@ -9,29 +12,48 @@ import { ProdutoService } from '../produto/produto.service';
   styleUrls: ['./produto-form.component.css'],
 })
 export class ProdutoFormComponent implements OnInit {
-  ProdutoForm!: FormGroup;
-  @ViewChild('ProdutoNomeInput')
-  ProdutoNomeInput!: ElementRef<HTMLInputElement>;
+  produtoForm!: FormGroup;
+  @ViewChild('produtoNomeInput')
+  produtoNomeInput!: ElementRef<HTMLInputElement>;
   produto!: Produto;
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
-    private ProdutoService: ProdutoService
+    private produtoService: ProdutoService,
+    private platformDetectorService: plataformDetectorService // Fix the typo in the service name
   ) {}
 
   ngOnInit(): void {
-    this.ProdutoForm = this.formBuilder.group({});
+    this.produtoForm = this.formBuilder.group({
+      nome: ['', Validators.required],
+      preco: ['', Validators.required],
+      descricao: ['', Validators.required],
+      estoque: ['', Validators.required],
+      categoriaId: ['', Validators.required],
+    });
   }
 
-  cadastraProduto() {
-    console.log('Método cadastraProduto chamado.');
-    this.produto = this.ProdutoForm.value;
+  cadastrarProduto() {
+    this.produto = this.produtoForm.value;
 
-    this.ProdutoService.ProdutoCadastro(this.produto).subscribe((erro) => {
-      console.log(erro);
-      this.ProdutoForm.reset();
-      this.ProdutoNomeInput.nativeElement.focus();
-      alert('Dados invalidos para o produto');
-    });
+    this.produtoService.adicionarProduto(this.produto).subscribe(
+      () => {
+        alert('Produto cadastrado com sucesso!');
+        this.produtoForm.reset();
+        this.platformDetectorService.isPlataforBrowser() &&
+          this.produtoNomeInput.nativeElement.focus();
+        
+      },
+      (error) => {
+        console.error('Erro ao cadastrar produto:', error);
+        alert('Ocorreu um erro ao cadastrar o produto. Verifique os dados e tente novamente.');
+        this.produtoForm.reset();
+      }
+    );
+  }
+
+  Menu() {
+    this.router.navigate(['Dashboard']);
   }
 }

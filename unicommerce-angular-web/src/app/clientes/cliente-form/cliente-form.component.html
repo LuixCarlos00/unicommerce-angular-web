@@ -1,80 +1,100 @@
-<body class="container">
-  <br>
-  <br>
-  <h1 class="text-center">Unicommerce</h1>
-  <br>
-  <br>
-  <h2 class="text-center">Cadastro de Cliente</h2>
-  <br>
-  <br>
-  <form>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="nome">Nome</label>
-          <input id="nome" type="text" class="form-control" required autofocus [(ngModel)]="cliente.nome" name="nome"/>
+<div class="container">
+  <h2 class="text-center mb-4">Cadastrar Cliente</h2>
+
+  <form [formGroup]="clienteForm" (ngSubmit)="CadastroCliente()">
+
+    <div class="form-group row">
+      <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
+      <div class="col-sm-4">
+        <input type="text" id="nome" formControlName="nome" class="form-control" />
+      </div>
+
+      <label for="cpf" class="col-sm-2 col-form-label">CPF:</label>
+      <div class="col-sm-4">
+        <input type="text" id="cpf" formControlName="cpf" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="telefone" class="col-sm-2 col-form-label">Telefone:</label>
+      <div class="col-sm-4">
+        <input type="text" id="telefone" formControlName="telefone" class="form-control" />
+      </div>
+    </div>
+
+    <div formGroupName="endereco">
+      <h4 class="text-center mt-4 mb-3">Endereço</h4>
+
+      <div class="form-group row">
+        <label for="rua" class="col-sm-2 col-form-label">Rua:</label>
+        <div class="col-sm-4">
+          <input type="text" id="rua" formControlName="rua" class="form-control" />
+        </div>
+
+        <label for="numero" class="col-sm-2 col-form-label">Número:</label>
+        <div class="col-sm-4">
+          <input type="text" id="numero" formControlName="numero" class="form-control" />
         </div>
       </div>
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="cpf">CPF</label>
-          <input id="cpf" type="number" class="form-control" required [(ngModel)]="cliente.cpf" name="cpf" />
+      <div class="form-group row">
+        <label for="complemento" class="col-sm-2 col-form-label">Complemento:</label>
+        <div class="col-sm-4">
+          <input type="text" id="complemento" formControlName="complemento" class="form-control" />
+        </div>
+
+        <label for="bairro" class="col-sm-2 col-form-label">Bairro:</label>
+        <div class="col-sm-4">
+          <input type="text" id="bairro" formControlName="bairro" class="form-control" />
         </div>
       </div>
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="telefone">Telefone</label>
-          <input id="telefone" type="number" class="form-control" required [(ngModel)]="cliente.telefone" name="telefone"/>
+      <div class="form-group row">
+        <label for="cidade" class="col-sm-2 col-form-label">Cidade:</label>
+        <div class="col-sm-4">
+          <input type="text" id="cidade" formControlName="cidade" class="form-control" />
         </div>
-      </div>
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="rua">Rua</label>
-          <input id="rua" type="text" class="form-control" required [(ngModel)]="cliente.endereco.rua" name="rua" />
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="numero">Número</label> 
-          <input id="numero" type="number" class="form-control" required  [(ngModel)]="cliente.endereco.numero" name="numero"/>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="complemento">Complemento</label>
-          <input id="complemento" type="text" class="form-control" required [(ngModel)]="cliente.endereco.complemento" name="complemento" />
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="bairro">Bairro</label>
-          <input id="bairro" type="text" class="form-control" required [(ngModel)]="cliente.endereco.bairro" name="bairro" />
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="cidade">Cidade</label>
-          <input id="cidade" type="text" class="form-control" required [(ngModel)]="cliente.endereco.cidade" name="cidade" />
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="estado">Estado</label>
-          <input id="estado" type="text" class="form-control" required  [(ngModel)]="cliente.endereco.estado" name="estado"/>
+        <label for="estado" class="col-sm-2 col-form-label">Estado:</label>
+        <div class="col-sm-4">
+          <input type="text" id="estado" formControlName="estado" class="form-control" />
         </div>
       </div>
     </div>
 
-    <div>
-      <button class="btn btn-primary" type="button" (click)="CadastraCliente()">Adicionar</button>
+    <div formGroupName="Login">
+      <h4 class="text-center mt-4 mb-3">Usuario e Senha</h4>
+
+      <div class="form-group row">
+        <label for="login" class="col-sm-2 col-form-label">Login:</label>
+        <div class="col-sm-4">
+          <input placeholder="login" class="form-control" required autofocus formControlName="login" />
+        </div>
+
+        <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
+        <div class="col-sm-4">
+          <input type="password" placeholder="senha" class="form-control" required formControlName="senha" />
+        </div>
+      </div>
     </div>
+<br>
+<br>
+    <div class="linha do grupo de formulários">
+      <div class="col-sm-10 offset-sm-5">
+      <button type="submit" class="btn btn-primary">Cliente Cadastrar</button>
+      <button class="btn bg-white" type="button" (click)="Menu()">MENU</button>
+      </div>
+      </div>
   </form>
-</body>
+</div>
+
+
+
+
+
+
+
+
+
+
+

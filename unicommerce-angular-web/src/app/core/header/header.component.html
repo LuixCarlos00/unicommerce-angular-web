@@ -1,0 +1,18 @@
+<header class="fixed-top">
+    <nav class="navbar navbar-light bg-white">
+        <a class="navbar-brand">Unicomecer</a>
+         <div *ngIf="(user$ | async) as user; else login">  
+            <i class="fa-solid fa-user"></i>
+            <a class="ml-2 ">{{user.login}}</a>
+            <div>
+                <button (click)="logout()"> SAIR</button>
+            </div>
+            
+        </div>
+        <ng-template #login>
+            <span class="navbar-tex">
+                <a [routerLink]="['']"> Please, login!</a>
+            </span>
+        </ng-template>
+    </nav>
+</header>

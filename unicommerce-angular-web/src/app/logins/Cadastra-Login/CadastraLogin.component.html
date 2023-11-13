@@ -1,0 +1,38 @@
+<br />
+<br />
+<br />
+<h4 class="text-center">Register from Unicomecer</h4>
+<h5>Por Favor Preencha os campos </h5>
+ 
+<!-- singup.component.html -->
+<form [formGroup]="signupForm">
+  <div class="form-group">
+    <input
+      placeholder="login"
+      class="form-control"
+      required
+      autofocus
+      formControlName="login"
+    />
+    <ap-vmessage *ngIf="signupForm.get('login')?.hasError('required')" text="Login is required"></ap-vmessage>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="password"
+      placeholder="senha"
+      class="form-control"
+      required
+      formControlName="senha"
+    />
+    <ap-vmessage *ngIf="signupForm.get('senha')?.hasError('required')" text="Senha is required"></ap-vmessage>
+  </div>
+
+  <button class="btn btn-primary btn-block"      (click)="CadastraUsuarios()">
+    Register
+  </button>
+
+  <p>Already a user?<a [routerLink]="['']">Sign In!</a></p>
+</form>
+
+

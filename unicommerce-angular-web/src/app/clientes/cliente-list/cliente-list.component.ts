@@ -9,19 +9,19 @@ import { ClienteService } from '../cliente/cliente.service';
   styleUrls: ['./cliente-list.component.css'],
 })
 export class ClienteListComponent implements OnInit {
-  clientes: Cliente[] = [];
+  clienteListComponent: Cliente[] = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private clienteService: ClienteService
   ) {}
 
   ngOnInit(): void {
-    this.clientes = this.activatedRoute.snapshot.data['clientes'];
+    this.clienteListComponent = this.activatedRoute.snapshot.data['clientes'];
   }
 
   load() {
     this.clienteService.getLit().subscribe((cliente) => {
-      this.clientes = this.clientes.concat(cliente);
+      this.clienteListComponent = this.clienteListComponent.concat(cliente);
     });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Cliente } from '../../cliente/cliente';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ap-cliente',
@@ -8,10 +9,18 @@ import { Cliente } from '../../cliente/cliente';
 })
 export class ClienteComponent implements OnInit {
 
-  @Input() clientes:Cliente[] =[];
+  @Input() clientes :Cliente[] =[];
   rows:any[]=[]
   
-constructor(){}
+constructor(
+private route : Router
+
+){}
+
+
+Menu(){
+  this.route.navigate(['Dashboard'])
+    }
 
 ngOnInit(): void {
   throw new Error('Method not implemented.');
@@ -19,7 +28,7 @@ ngOnInit(): void {
 
 ngOnChanges(changes:SimpleChanges){
   if(changes['clientes'])
-  this.rows = this.groupColuns(this.clientes);
+  this.rows = this.groupColuns(this.clientes );
 }
 
 

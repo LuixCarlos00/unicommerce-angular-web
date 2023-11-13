@@ -9,6 +9,10 @@ import { CategoriasModule } from './categorias/categorias.module';
 import { ClientesModules } from './clientes/clientes.modules';
 import { ProdutosModules } from './produtos/produtos.modules';
  
+import { CoreModele } from './core/core.mdule';
+ import { DashboardModules } from './Dashboards/Dashboard.modules';
+ import { LoginModule } from './logins/login.module';
+ 
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,9 +21,12 @@ import { ProdutosModules } from './produtos/produtos.modules';
     AppRoutingModule,
     ErrosModules,
 
+    LoginModule,
     CategoriasModule,
     ClientesModules,
-    ProdutosModules
+    ProdutosModules,
+    CoreModele,
+    DashboardModules
   ],
   providers: [],
   bootstrap: [AppComponent],

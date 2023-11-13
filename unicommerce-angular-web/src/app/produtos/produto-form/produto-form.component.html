@@ -1,83 +1,58 @@
 <body class="container">
-  <h1 class="text-center">Unicommerce</h1>
-  <h2 class="text-center">Cadastro de Produto</h2>
 
-  <form>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="nome">Nome</label>
-          <input
-            id="nome"
-            type="text"
-            class="form-control"
-            required
-            autofocus
-            [(ngModel)]="produto.nome"
-            name="nome"
-          />
-        </div>
-      </div>
+  <h1 class="text-center">Produtos</h1>
+  <br>
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="preco">Preco</label>
-          <input
-            id="preco"
-            type="number"
-            class="form-control"
-            required
-            [(ngModel)]="produto.preco"
-            name="preco"
-          />
-        </div>
-      </div>
+  <form [formGroup]="produtoForm" class="form" (submit)="cadastrarProduto()">
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="descricao">Descricao</label>
-          <input
-            id="descricao"
-            type="text"
-            class="form-control"
-            required
-            [(ngModel)]="produto.descricao"
-            name="descricao"
-          />
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="quantidade">Quantidade</label>
-          <input
-            id="quantidade"
-            type="number"
-            class="form-control"
-            required
-            [(ngModel)]="produto.quantidade"
-            name="quantidade"
-          />
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="Idcategoria">Idcategoria</label>
-          <input
-            id="Idcategoria"
-            type="number"
-            class="form-control"
-            required
-            [(ngModel)]="produto.Idcategoria"
-            name="Idcategoria"
-          />
-        </div>
+    <div class="form-group row">
+      <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
+      <div class="col-sm-4">
+        <input formControlName="nome" type="text" id="nome" class="form-control" required />
       </div>
     </div>
 
-    <button class="btn btn-primary" type="submit" (click)="cadastraProduto()">
-      Cadastrar Produto
-    </button>
+    <div class="form-group row">
+      <label for="preco" class="col-sm-2 col-form-label">Preço:</label>
+      <div class="col-sm-4">
+        <input formControlName="preco" id="preco" type="number" class="form-control" min="0.01" step="0.01" value="0.0" required />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="descricao" class="col-sm-2 col-form-label">Descrição:</label>
+      <div class="col-sm-4">
+        <input formControlName="descricao" type="text" id="descricao" class="form-control" required />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="estoque" class="col-sm-2 col-form-label">Quantidade:</label>
+      <div class="col-sm-4">
+        <input formControlName="estoque" type="number" min="1" step="1" id="estoque" class="form-control" value="1" required />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="categoriaId" class="col-sm-2 col-form-label">Categoria:</label>
+      <div class="col-sm-4">
+        <input formControlName="categoriaId" type="number" id="categoriaId" class="form-control" required />
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group row">
+      <div class="col-sm-6 offset-sm-2">
+        <button class="btn btn-primary" type="submit">Incluir</button>
+        
+          <button class="btn bg-white" type="button" (click)="Menu()">MENU</button>
+        
+      </div>
+    </div>
+
   </form>
+
+  <br>
+  <br>
+
 </body>

@@ -1,34 +1,49 @@
 <div class="container">
-  <br>
-  <br>
+  <br />
+  <br />
   <h1 class="text-center">Unicommerce</h1>
-  <br>
-  <br>
+  <br />
+  <br />
   <h5 class="text-center">Cadastrar Categoria</h5>
-  <br>
-  <br>
-  <form  >
+  <br />
+  <br />
+  <form [formGroup]="categoriaForm" (ngSubmit)="cadastraCategoria()">
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="nome">Nome</label>
-          <input id="nome" type="text" class="form-control" required autofocus [(ngModel)]="categoria.nome" name="nome" />
+          <input
+            id="nome"
+            type="text"
+            class="form-control"
+            autofocus
+            formControlName="nome"
+          />
         </div>
+        <ap-vmessage *ngIf="categoriaForm.get('nome')?.hasError('required')" text="Categoria deve ter no minimo 5 caracteres "></ap-vmessage>
       </div>
 
-      <div class="col-md-6">  
+      <div class="col-md-6">
         <div class="form-group">
           <label for="status">Status</label>
           <div class="form-check">
-            <input id="status" type="checkbox" class="form-check-input" required [(ngModel)]="categoria.ativo" name="ativo" />
+            <input
+              id="status"
+              type="checkbox"
+              class="form-check-input"
+              required
+            />
             <label class="form-check-label" for="status">Ativo</label>
           </div>
         </div>
       </div>
     </div>
-
+    <br>
     <div>
-      <button class="btn btn-primary" type="button" (click)="cadastraCategoria()">Adicionar</button>
+      <button class="btn btn-primary" type="submit">Adicionar</button>
     </div>
   </form>
+  <div>
+    <button class="btn bg-white" type="button" (click)="Menu()">MENU</button>
+  </div>
 </div>
