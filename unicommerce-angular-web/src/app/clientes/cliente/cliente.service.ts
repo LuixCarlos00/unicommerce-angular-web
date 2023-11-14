@@ -41,21 +41,6 @@ export class ClienteService {
 
   
 
-//  getToken(): any {
- //   return this.tokenService.hasToken();
- //}
-
-
-
-  
-  //getIdDoUsuarioAutenticado(): number | null {
-  //  const token = this.getToken();
-  //  if (token && !this.jwtHelper.isTokenExpired(token)) {
-  //   const decodedToken = this.jwtHelper.decodeToken(token);
-  //    return decodedToken?.id ?? null;
-  //  }
- //  return null;
- // }
-
+ 
 
 }

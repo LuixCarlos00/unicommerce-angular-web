@@ -1,5 +1,11 @@
+export interface Usuario {
+  id: number;
+  login: string;
+  senha: string;
+}
+
 export interface Cliente {
-  id?: number;
+  id: number;
   nome: string;
   cpf: string;
   telefone: string;
@@ -9,15 +15,9 @@ export interface Cliente {
 
 export interface Endereco {
   rua: string;
-  numero: number;
+  numero: string;
   complemento: string;
   bairro: string;
   cidade: string;
   estado: string;
-}
-
-export interface Usuario {
-  id?: number;
-  login: string;
-  senha: string;
 }

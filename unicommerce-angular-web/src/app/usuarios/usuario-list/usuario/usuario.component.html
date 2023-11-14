@@ -1,0 +1,22 @@
+<div class="container">
+    <p class="text-center text-muted">Carregando</p>
+  
+    <ol class="list-unstyled">
+      <li *ngFor="let cols of rows" class="row no-gutters p-0">
+        <div *ngFor="let user of cols" class="col-4" apDarkenOnHover>
+          <ap-card>
+            <app-usuario 
+              [id]="user.id" >
+              [nome]="user.login">
+
+            </app-usuario>
+          </ap-card>
+        </div>
+      </li>
+    </ol>
+  
+    <div>
+      <button class="btn bg-white" type="button" (click)="Menu()">MENU</button>
+    </div>
+  </div>
+  

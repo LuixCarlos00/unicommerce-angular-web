@@ -1,34 +1,39 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CategoriaListResolver } from './categorias/categoria-list/categoria-list.resolver';
 import { CategoriaFormComponent } from './categorias/categoria-form/categoria-form.component';
-import { NotFoudComponent } from './erros/not-foud/not-foud.component';
-import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.component';
-import { ProdutoFormComponent } from './produtos/produto-form/produto-form.component';
 import { CategoriaListComponent } from './categorias/categoria-list/categoria-list.component';
+import { CategoriaListResolver } from './categorias/categoria-list/categoria-list.resolver';
+import { ClienteFormComponent } from './clientes/cliente-form/cliente-form.component';
 import { ClienteListComponent } from './clientes/cliente-list/cliente-list.component';
 import { ClientelistResolver } from './clientes/cliente-list/cliente-list.resouver';
+import { NotFoudComponent } from './erros/not-foud/not-foud.component';
+import { ProdutoFormComponent } from './produtos/produto-form/produto-form.component';
 import { ProdutoListComponent } from './produtos/produto-list/produto-list.component';
 import { ProdutoListResolver } from './produtos/produto-list/produto-list.resolver';
  
 import { DashboardFormsComponent } from './Dashboards/dashboard-forms/dashboard-forms.component';
-import { AuthGuard } from './core/auth/auth.guard';
-import { LoginComopenent } from './logins/login/login.component';
-import { CadastraLoginComponent } from './logins/Cadastra-Login/CadastraLogin.component';
+import { UsuarioListResolver } from './usuarios/usuario-list/UsuarioListResolver';
+import { UsuarioListComponent } from './usuarios/usuario-list/usuario-list.component';
  
  
 const routes: Routes = [
+
+
+ 
+{
+  path:'',
+  pathMatch:'full',
+  redirectTo:'home'
+},
   {
-    path: '',
-    component: LoginComopenent,
-    //canActivate : [AuthGuard] aqui imposibilita do usuario a quando estiver logado de volta o menu de login
+    path:'home',
+    loadChildren: () => import ('./logins/login.module').then(x =>x.LoginModule)
+    
+   // canActivate : [AuthGuard],//aqui imposibilita do usuario a quando estiver logado de volta o menu de login
+    
   },
-  {
-    path: 'criarLogin',
-    component: CadastraLoginComponent
-  
-  },
+
 
 
 
@@ -67,7 +72,14 @@ const routes: Routes = [
 
 
 
+  {
+  path:'usuario/lista',
+  component:UsuarioListComponent,
+  resolve:{
+    usuarios:UsuarioListResolver,
+  }
 
+  },
 
 
 
@@ -95,7 +107,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash:true})],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -48,5 +48,3 @@ getUseName(){
     return this.userName
   }
 }
-
- 

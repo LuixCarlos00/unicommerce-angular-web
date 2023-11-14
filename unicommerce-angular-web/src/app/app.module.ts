@@ -4,14 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ErrosModules } from './erros/erros.modules';
 import { CategoriasModule } from './categorias/categorias.module';
 import { ClientesModules } from './clientes/clientes.modules';
+import { ErrosModules } from './erros/erros.modules';
 import { ProdutosModules } from './produtos/produtos.modules';
  
-import { CoreModele } from './core/core.mdule';
+ 
  import { DashboardModules } from './Dashboards/Dashboard.modules';
- import { LoginModule } from './logins/login.module';
+import { CoreModule } from './core/core.module';
+import { UsuarioModule } from './usuarios/usuario.module';
  
 
 @NgModule({
@@ -21,12 +22,13 @@ import { CoreModele } from './core/core.mdule';
     AppRoutingModule,
     ErrosModules,
 
-    LoginModule,
+
     CategoriasModule,
     ClientesModules,
     ProdutosModules,
-    CoreModele,
-    DashboardModules
+    CoreModule,
+    DashboardModules,
+    UsuarioModule
   ],
   providers: [],
   bootstrap: [AppComponent],

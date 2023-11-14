@@ -26,4 +26,8 @@ export class ClienteComponent {
   
   @Input() estado: string=''
 
+  @Input() login: string=""
+  
+  @Input() senha:string=''
+
 }

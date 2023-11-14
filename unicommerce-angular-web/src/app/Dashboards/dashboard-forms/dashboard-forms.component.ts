@@ -15,11 +15,11 @@ export class DashboardFormsComponent {
 
   
 
-  ListarCategoria() {
+  ListarCategoria() :void{
     this.router.navigate(['/categoria/lista']);
   }
 
-  CadastraCategoria() {
+  CadastraCategoria() :void{
     this.router.navigate(['/categoria']);
   }
 
@@ -29,11 +29,11 @@ export class DashboardFormsComponent {
 
 
 
-  CadastraCLiente() {
+  CadastraCLiente():void{
     this.router.navigate(['/cliente']);
   }
 
-  ListarCliente() {
+  ListarCliente():void {
     this.router.navigate(['/cliente/lista']);
   }
 
@@ -43,11 +43,20 @@ export class DashboardFormsComponent {
 
 
 
-  ListarProdutos() {
+  ListarProdutos():void {
     this.router.navigate(['/produto/lista']);
   }
 
-  CadastraProdutos() {
+  CadastraProdutos() :void{
     this.router.navigate(['produto']);
   }
+
+
+
+
+  ListarUsuario():void{
+    this.router.navigate(['usuario/lista'])
+  }
+
+
 }
